@@ -1,0 +1,32 @@
+{
+  "name": "ai-saas-admin",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@8.15.4",
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,magenta \"pnpm --filter @ai-saas-admin/api dev\" \"pnpm --filter @ai-saas-admin/web dev\"",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "env:gen": "node scripts/gen-env.mjs",
+    "db:migrate": "pnpm --filter @ai-saas-admin/api prisma migrate deploy || pnpm --filter @ai-saas-admin/api prisma db push",
+    "db:push": "pnpm --filter @ai-saas-admin/api prisma db push",
+    "db:generate": "pnpm --filter @ai-saas-admin/api prisma generate",
+    "db:seed": "pnpm --filter @ai-saas-admin/api prisma db seed",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.6.1",
+    "@commitlint/config-conventional": "^18.6.3",
+    "eslint": "^8.57.0",
+    "concurrently": "^9.1.2",
+    "husky": "^9.0.11",
+    "prettier": "^3.3.3",
+    "turbo": "^2.0.1",
+    "typescript": "^5.5.4"
+  }
+}
+
+

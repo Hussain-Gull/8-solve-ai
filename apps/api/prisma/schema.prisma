@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Tenant {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  users     User[]
+  notifications Notification[]
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  MANAGER
+  USER
+}
+
+model User {
+  id              String   @id @default(cuid())
+  email           String
+  name            String?
+  passwordHash    String
+  role            Role     @default(USER)
+  tenantId        String
+  tenant          Tenant   @relation(fields: [tenantId], references: [id])
+  refreshTokens   RefreshToken[]
+  notifications   Notification[]
+  passwordResets  PasswordReset[]
+  createdAt       DateTime @default(now())
+  twoFactorEnabled Boolean  @default(false)
+  twoFactorSecret  String?
+
+  @@unique([tenantId, email])
+  @@index([role])
+}
+
+model RefreshToken {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  tokenHash    String
+  revoked      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  revokedAt    DateTime?
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  title     String
+  body      String?
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([tenantId, read])
+}
+
+model PasswordReset {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  selector     String   @unique
+  verifierHash String
+  expiresAt    DateTime
+  used         Boolean  @default(false)
+  usedAt       DateTime?
+  createdAt    DateTime @default(now())
+}
+
+

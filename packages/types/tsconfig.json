@@ -1,0 +1,12 @@
+{
+  "extends": "@ai-saas-admin/config/tsconfig/base.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}
+
+

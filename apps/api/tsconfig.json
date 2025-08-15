@@ -1,0 +1,16 @@
+{
+  "extends": "@ai-saas-admin/config/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "moduleResolution": "Node",
+    "types": ["node", "jest"],
+    "baseUrl": ".",
+    "paths": {
+      "@ai-saas-admin/types": ["../../packages/types/src"]
+    }
+  },
+  "include": ["src", "tests", "prisma"]
+}
+
+

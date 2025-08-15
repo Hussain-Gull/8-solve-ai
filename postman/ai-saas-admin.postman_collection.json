@@ -1,0 +1,51 @@
+{
+  "info": {
+    "name": "ai-saas-admin",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{api}}/auth/login", "host": ["{{api}}"], "path": ["auth", "login"] },
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"superadmin@example.com\",\n  \"password\": \"ChangeMe123!\"\n}" }
+      }
+    },
+    {
+      "name": "Auth Refresh",
+      "request": { "method": "POST", "url": { "raw": "{{api}}/auth/refresh", "host": ["{{api}}"], "path": ["auth", "refresh"] } }
+    },
+    {
+      "name": "Auth Logout",
+      "request": { "method": "POST", "url": { "raw": "{{api}}/auth/logout", "host": ["{{api}}"], "path": ["auth", "logout"] } }
+    },
+    {
+      "name": "Tenants List",
+      "request": { "method": "GET", "url": { "raw": "{{api}}/tenants", "host": ["{{api}}"], "path": ["tenants"] } }
+    },
+    {
+      "name": "Tenants Create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{api}}/tenants", "host": ["{{api}}"], "path": ["tenants"] },
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"New Org\"\n}" }
+      }
+    },
+    {
+      "name": "Users List (tenant)",
+      "request": { "method": "GET", "url": { "raw": "{{api}}/users", "host": ["{{api}}"], "path": ["users"] } }
+    },
+    {
+      "name": "Notifications List",
+      "request": { "method": "GET", "url": { "raw": "{{api}}/notifications", "host": ["{{api}}"], "path": ["notifications"] } }
+    }
+  ],
+  "variable": [
+    { "key": "api", "value": "http://localhost:4000" }
+  ]
+}
+
+

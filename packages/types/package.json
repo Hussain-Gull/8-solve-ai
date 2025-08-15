@@ -1,0 +1,9 @@
+{
+  "name": "@ai-saas-admin/types",
+  "version": "0.1.0",
+  "private": true,
+  "types": "src/index.ts",
+  "files": ["src"]
+}
+
+

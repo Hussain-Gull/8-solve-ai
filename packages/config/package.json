@@ -1,0 +1,13 @@
+{
+  "name": "@ai-saas-admin/config",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "files": [
+    "eslint/index.js",
+    "prettier/index.cjs",
+    "tsconfig/base.json"
+  ]
+}
+
+
