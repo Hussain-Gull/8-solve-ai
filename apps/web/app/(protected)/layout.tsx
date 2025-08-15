@@ -97,9 +97,13 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
         </div>
       </header>
       <div className="flex">
-        <aside className={`${collapsed ? 'w-14' : 'w-56'} transition-all duration-200 shrink-0 border-r p-4`}> 
-          <nav className="flex flex-col gap-2">
-            {items.map(i => <Link key={i.href} href={i.href} className="text-sm hover:underline">{i.label}</Link>)}
+        <aside className={`${collapsed ? 'w-14' : 'w-56'} transition-all duration-200 shrink-0 border-r p-2`}> 
+          <nav className="flex flex-col gap-1">
+            {items.map(i => (
+              <Link key={i.href} href={i.href} className={`flex items-center rounded px-2 py-2 text-sm hover:bg-muted ${collapsed ? 'justify-center' : ''}`}>
+                <span className={`${collapsed ? 'sr-only' : 'truncate'}`}>{i.label}</span>
+              </Link>
+            ))}
           </nav>
         </aside>
         <main className="flex-1 p-4">{children}</main>
