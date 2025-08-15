@@ -7,10 +7,6 @@ dist
 build
 .turbo
 
-# Env
-.env
-.env.*
-!.env.example
 
 # Logs
 npm-debug.log*
